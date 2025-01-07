@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script
+      type="text/javascript"
+      src="node_modules/jquery/dist/jquery.min.js"
+      defer
+    ></script>
+    <script
+    type="text/javascript"
+    src="node_modules\jquery-ui\dist\jquery-ui.min.js"
+    defer
+  ></script>
+  <link rel="stylesheet" href="node_modules\jquery-ui\dist\themes\base\jquery-ui.min.css">
+    <script type="text/javascript" src="js/app.js" defer></script>
+    <style>
+      #carre {
+        width: 100px;
+        height: 100px;
+        background-color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <ul id="javascript-list">
+      <li>TEST 1</li>
+      <li>TEST 2</li>
+      <li>TEST 3</li>
+      <li>TEST 4</li>
+    </ul>
+
+    <ul id="jquery-list">
+      <li>TEST 1</li>
+      <li>TEST 2</li>
+      <li>TEST 3</li>
+      <li>TEST 4</li>
+    </ul>
+
+    <button id="btn-js">Click JS</button>
+    <button id="btn-jquery">Click JQERY</button>
+</br></br>
+    <div id="carre"></div>
+
+</br>
+
+<style>
+    #red, #green, #blue {
+      float: left;
+      clear: left;
+      width: 300px;
+      margin: 15px;
+    }
+    #swatch {
+      width: 120px;
+      height: 100px;
+      margin-top: 18px;
+      margin-left: 350px;
+      background-image: none;
+    }
+    #red .ui-slider-range { background: #ef2929; }
+    #red .ui-slider-handle { border-color: #ef2929; }
+    #green .ui-slider-range { background: #8ae234; }
+    #green .ui-slider-handle { border-color: #8ae234; }
+    #blue .ui-slider-range { background: #729fcf; }
+    #blue .ui-slider-handle { border-color: #729fcf; }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script src="https://code.jquery.com/ui/1.14.1/jquery-ui.js"></script>
+    <script>
+    $( function() {
+      function hexFromRGB(r, g, b) {
+        var hex = [
+          r.toString( 16 ),
+          g.toString( 16 ),
+          b.toString( 16 )
+        ];
+        $.each( hex, function( nr, val ) {
+          if ( val.length === 1 ) {
+            hex[ nr ] = "0" + val;
+          }
+        });
+        return hex.join( "" ).toUpperCase();
+      }
+      function refreshSwatch() {
+        var red = $( "#red" ).slider( "value" ),
+          green = $( "#green" ).slider( "value" ),
+          blue = $( "#blue" ).slider( "value" ),
+          hex = hexFromRGB( red, green, blue );
+        $( "#swatch" ).css( "background-color", "#" + hex );
+      }
+   
+      $( "#red, #green, #blue" ).slider({
+        orientation: "horizontal",
+        range: "min",
+        max: 255,
+        value: 127,
+        slide: refreshSwatch,
+        change: refreshSwatch
+      });
+      $( "#red" ).slider( "value", 255 );
+      $( "#green" ).slider( "value", 140 );
+      $( "#blue" ).slider( "value", 60 );
+    } );
+    </script>
+  </head>
+  <body class="ui-widget-content" style="border:0;">
+   
+  <p class="ui-state-default ui-corner-all ui-helper-clearfix" style="padding:4px;">
+    <span class="ui-icon ui-icon-pencil" style="float:left; margin:-2px 5px 0 0;"></span>
+    Simple Colorpicker
+  </p>
+   
+  <div id="red"></div>
+  <div id="green"></div>
+  <div id="blue"></div>
+   
+  <div id="swatch" class="ui-widget-content ui-corner-all"></div>
+</br></br>
+<style>
+    .ui-progressbar {
+      position: relative;
+    }
+    .progress-label {
+      position: absolute;
+      left: 50%;
+      top: 4px;
+      font-weight: bold;
+      text-shadow: 1px 1px 0 #fff;
+    }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script src="https://code.jquery.com/ui/1.14.1/jquery-ui.js"></script>
+    <script>
+    $( function() {
+      var progressbar = $( "#progressbar" ),
+        progressLabel = $( ".progress-label" );
+   
+      progressbar.progressbar({
+        value: false,
+        change: function() {
+          progressLabel.text( progressbar.progressbar( "value" ) + "%" );
+        },
+        complete: function() {
+          progressLabel.text( "Complete!" );
+        }
+      });
+   
+      function progress() {
+        var val = progressbar.progressbar( "value" ) || 0;
+   
+        progressbar.progressbar( "value", val + 2 );
+   
+        if ( val < 99 ) {
+          setTimeout( progress, 80 );
+        }
+      }
+   
+      setTimeout( progress, 2000 );
+    } );
+    </script>
+  </head>
+  <body>
+   
+  <div id="progressbar"><div class="progress-label">Loading...</div></div>
+  </head>
+  <body>
+   
+  <div id="progressbar"></div>
+   
+   
+
+  </body>
+</html>
